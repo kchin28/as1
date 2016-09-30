@@ -11,8 +11,6 @@ public class WeekdayMapTest extends TestCase {
 
     public void testAddHabit(){
         WeekdayMap map = new WeekdayMap();
-
-
         int[] o1 = {0,1,0,1,0,0,0};
         Habit h1 = new Habit(new Date(1),"h1",o1);
         map.addHabit(h1);
@@ -20,9 +18,17 @@ public class WeekdayMapTest extends TestCase {
         assertTrue( map.get(1).contains(h1) );
     }
 
-//    public testDeleteHabit(){
-//
-//    }
+    public void testDeleteHabit(){
+        WeekdayMap map = new WeekdayMap();
+        int[] o1 = {0,1,0,1,0,0,0};
+        Habit h1 = new Habit(new Date(1),"h1",o1);
+        map.addHabit(h1);
+        map.deleteHabit(h1);
+
+        assertFalse( map.get(1).contains(h1) );
+
+
+    }
 
 
 

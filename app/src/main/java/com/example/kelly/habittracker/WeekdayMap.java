@@ -26,4 +26,14 @@ public class WeekdayMap extends HashMap<Integer,HabitList> {
             }
         }
     }
+
+    public void deleteHabit(Habit h){
+        for (int i=0; i<7; i++){
+            if(h.getOccurance(i)==1){
+                this.get(i).remove(h);
+            }
+        }
+
+
+    }
 }//end of class
