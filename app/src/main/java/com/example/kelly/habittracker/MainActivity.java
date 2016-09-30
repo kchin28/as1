@@ -10,9 +10,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class MainActivity extends Activity {
 
@@ -24,6 +28,23 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        int currWeekday = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM d, yyyy");
+        String displayDate = dateFormat.format(new Date());
+
+        TextView TodaysDate = (TextView) findViewById(R.id.todayTextView);
+        TodaysDate.setText("Today is " + displayDate);
+
+
+//        ListView listview = (ListView) findViewById(R.id.dailyListView);
+//        final ArrayList<Habit> list = new ArrayList<Student>(students);
+//        final ArrayAdapter<Habit> DailyHabitListAdapter = new ArrayAdapter<Habit>(this, android.R.layout.simple_list_item_1, ListController.getDailyHabits());
+//        listview.setAdapter(DailyHabitListAdapter);
+//  ArrayAdapter<Habit> dailyHabitAdapter = new ArrayAdapter<Habit>();
+
+
 
 //        Button addButton = (Button) findViewById(R.id.AddHabitButton);
 //        ListView dailyListView = (ListView) findViewById(R.id.dailyListView);
@@ -38,7 +59,8 @@ public class MainActivity extends Activity {
     }//end of onCreate
 
     public void addAHabitBpress(View v){
- //       Toast.makeText(this,"Add Habit Button Pressed!",Toast.LENGTH_SHORT).show();
+
+        Toast.makeText(this,"Add Habit Button Pressed!",Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(MainActivity.this,AddHabitActivity.class);
         startActivity(intent);
     }

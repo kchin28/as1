@@ -25,10 +25,17 @@ public class Habit {
     public String getName(){
         return Name;
     }
+    public String toString(){
+        return this.getName();
+    }
 
     public Date getDate(){ return CreationDate; }
 
     public int getOccurance(int i){ return occurance[i];}
+
+    public void addCompletion(Completion c){
+        record.add(c);
+    }
 
     public CompletionRecord getCompletionRecord(){ return record;}
 

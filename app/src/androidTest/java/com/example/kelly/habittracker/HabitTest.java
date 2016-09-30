@@ -19,4 +19,14 @@ public class HabitTest extends TestCase {
         assertTrue(h1.getOccurance(0)==1);
     }
 
+//    public void testAddCompletion(){
+//        int[] o = {1,0,0,0,0,0,0};
+//        Habit h = new Habit(new Date(1), "h1",o);
+//        Completion c = new Completion();
+//
+//        h.addCompletion(c);
+//
+//        assertTrue(h.getCompletionRecord().get(0) == ) );
+//}
+
 }
