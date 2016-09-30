@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp" >
+
+    <ListView
+        android:layout_width="fill_parent"
+        android:layout_height="430dp"
+        android:id="@+id/dailyListView"
+        android:layout_above="@+id/AddHabitButton"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add a Habit"
+        android:id="@+id/AddHabitButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/dailyListView" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View All Habits"
+        android:id="@+id/allHabitsButton"
+        android:layout_alignTop="@+id/AddHabitButton"
+        android:layout_alignEnd="@+id/dailyListView" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="TodayText"
+        android:id="@+id/todayTextView"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/dailyListView"
+        android:layout_marginTop="43dp"
+        android:layout_alignEnd="@+id/allHabitsButton" />
+
+</RelativeLayout>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/newHabitName"
+        android:layout_marginTop="92dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Habit Name:"
+        android:id="@+id/addHabitText"
+        android:layout_alignBottom="@+id/newHabitName"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="39dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Occurance of Habit:"
+        android:id="@+id/occuranceText"
+        android:layout_below="@+id/newHabitName"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="41dp" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sunday"
+        android:id="@+id/sun_checkBox"
+        android:layout_marginTop="73dp"
+        android:checked="false"
+        android:layout_below="@+id/newHabitName"
+        android:layout_toEndOf="@+id/addHabitText" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Monday"
+        android:id="@+id/mon_checkBox"
+        android:layout_below="@+id/sun_checkBox"
+        android:layout_alignStart="@+id/sun_checkBox" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tuesday"
+        android:id="@+id/tue_checkBox"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/mon_checkBox" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Wednesday"
+        android:id="@+id/wed_checkBox"
+        android:layout_below="@+id/tue_checkBox"
+        android:layout_alignStart="@+id/tue_checkBox" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thursday"
+        android:id="@+id/thu_checkBox"
+        android:layout_below="@+id/wed_checkBox"
+        android:layout_alignStart="@+id/wed_checkBox" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Friday"
+        android:id="@+id/fri_checkBox"
+        android:layout_below="@+id/thu_checkBox"
+        android:layout_alignStart="@+id/thu_checkBox" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Saturday"
+        android:id="@+id/sat_checkBox"
+        android:layout_below="@+id/fri_checkBox"
+        android:layout_alignStart="@+id/fri_checkBox" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:id="@+id/saveHabitButton"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="49dp"
+        android:singleLine="true" />
+
+</RelativeLayout>

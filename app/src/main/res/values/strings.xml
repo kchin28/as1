@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">HabitTracker</string>
+    <string name="edit_message">Add a Habit.</string>
+    <string name="todaytext">TodayText</string>
+</resources>
