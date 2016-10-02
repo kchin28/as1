@@ -18,8 +18,6 @@ public class ListController {
     }
 
     public void addHabit(Habit h){
-
-
         getDailyHabits().addHabit(h);
     }
 

@@ -30,5 +30,40 @@ public class WeekdayMapTest extends TestCase {
 
     }
 
+    boolean updated  = false;
+    public void testNotifyListeners(){
+        WeekdayMap map = new WeekdayMap();
+        Listener l = new Listener() {
+            public void update(){
+                WeekdayMapTest.this.updated = true;
+            }
+        };
+
+        int[] o1 = {1,0,0,0,0,0,0};
+        map.addListener(l,o1);
+        Habit h1 = new Habit(new Date(1),"h1",o1);
+        map.addHabit(h1);
+        assertTrue(this.updated);
+
+    }
+
+    public void testRemoveListeners(){
+        WeekdayMap map = new WeekdayMap();
+        Listener l = new Listener() {
+            public void update(){
+                WeekdayMapTest.this.updated = true;
+            }
+        };
+
+        int[] o1 = {1,0,0,0,0,0,0};
+        map.addListener(l,o1);
+        map.removeListener(l,o1);
+        Habit h1 = new Habit(new Date(1),"h1",o1);
+        map.addHabit(h1);
+        assertFalse(this.updated);
+
+    }
+
+
 
 }// end of class
