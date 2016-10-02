@@ -10,5 +10,6 @@ public class Completion extends Date {
     public Completion(){
         super();
     }
+    public Completion(long l){super();}
 
 }

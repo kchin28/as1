@@ -15,7 +15,7 @@ public class WeekdayMapTest extends TestCase {
         Habit h1 = new Habit(new Date(1),"h1",o1);
         map.addHabit(h1);
 
-        assertTrue( map.get(1).contains(h1) );
+        assertTrue( map.getaList(1).contains(h1) );
     }
 
     public void testDeleteHabit(){
@@ -25,11 +25,44 @@ public class WeekdayMapTest extends TestCase {
         map.addHabit(h1);
         map.deleteHabit(h1);
 
-        assertFalse( map.get(1).contains(h1) );
+        assertFalse( map.getaList(1).contains(h1) );
 
 
     }
 
+    boolean updated  = false;
+    public void testNotifyListeners(){
+        WeekdayMap map = new WeekdayMap();
+        Listener l = new Listener() {
+            public void update(){
+                WeekdayMapTest.this.updated = true;
+            }
+        };
+
+        int[] o1 = {1,0,0,0,0,0,0};
+        map.addListener(0,l);
+        Habit h1 = new Habit(new Date(1),"h1",o1);
+        map.addHabit(h1);
+        assertTrue(this.updated);
+
+    }
+
+    public void testRemoveListeners(){
+        WeekdayMap map = new WeekdayMap();
+        Listener l = new Listener() {
+            public void update(){
+                WeekdayMapTest.this.updated = true;
+            }
+        };
+
+        int[] o1 = {0,1,0,0,0,0,0};
+        map.addListener(1,l);
+        map.removeListener(1,l);
+        Habit h1 = new Habit(new Date(1),"h1",o1);
+        map.addHabit(h1);
+        assertFalse(this.updated);
+
+    }
 
 
 
