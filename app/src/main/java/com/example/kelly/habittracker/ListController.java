@@ -18,11 +18,13 @@ public class ListController {
     }
 
     public void addHabit(Habit h){
-        map.addHabit(h);
+
+
+        getDailyHabits().addHabit(h);
     }
 
     public void deleteHabit(Habit h){
-        map.deleteHabit(h);
+        getDailyHabits().deleteHabit(h);
     }
 
 

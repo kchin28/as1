@@ -2,6 +2,7 @@ package com.example.kelly.habittracker;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -10,7 +11,7 @@ import android.widget.Toast;
 
 import java.util.Date;
 
-public class AddHabitActivity extends AppCompatActivity {
+public class AddHabitActivity extends MainActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,7 @@ public class AddHabitActivity extends AppCompatActivity {
         Habit newHabit = new Habit(new Date(),HabitNameTextView.getText().toString(),OccuranceNewHabit);
         ListController lc = new ListController();
         lc.addHabit(newHabit);
+//       // Log.d("hi",lc.getDailyHabits().get(0).get(0).toString());
     }
 }//end
 

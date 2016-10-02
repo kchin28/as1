@@ -17,7 +17,8 @@ public class Habit {
     public Habit(Date dateAdded, String HabitName, int[] howOften ){
         this.Name = HabitName;
         this.CreationDate = dateAdded;
-        this.occurance = howOften;
+        this.occurance=howOften;
+
         this.record = new CompletionRecord();
     }
 
