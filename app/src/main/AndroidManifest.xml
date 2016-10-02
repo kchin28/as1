@@ -16,7 +16,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".Main2Activity" />
-        <activity android:name=".AddHabitActivity"></activity>
+        <activity android:name=".AddHabitActivity" />
+        <activity
+            android:name=".HabitActionsActivity"
+            android:label="@string/title_activity_habit_actions"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

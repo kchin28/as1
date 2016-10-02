@@ -1,5 +1,13 @@
 <resources>
-    <string name="app_name">HabitTracker</string>
+    <string name="app_name">kgchin-HabitTracker</string>
     <string name="edit_message">Add a Habit.</string>
     <string name="todaytext">TodayText</string>
+    <string name="title_activity_habit_actions">HabitActionsActivity</string>
+    <string name="habit_actions">Choose an action:</string>
+    <string-array name="habit_actions_array">
+        <item>Complete Habit</item>
+        <item>Delete</item>
+        <item>View Completions</item>
+        <item>View Fulfillment Summary</item>
+    </string-array>
 </resources>

@@ -20,7 +20,7 @@ public class AddHabitActivity extends MainActivity {
     }
 
     public void saveHabitBpress(View v){
-        Toast.makeText(this,"Save Habit Button Pressed!",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Saving Habit!",Toast.LENGTH_SHORT).show();
         EditText HabitNameTextView = (EditText) findViewById(R.id.newHabitName);
         //checkboxes for occurance
         int[] OccuranceNewHabit = {0,0,0,0,0,0,0};
