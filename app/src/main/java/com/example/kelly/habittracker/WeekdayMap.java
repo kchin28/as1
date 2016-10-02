@@ -12,14 +12,6 @@ public class WeekdayMap //extends HashMap<Integer,HabitList>
     ArrayList<HabitList> map ;
     ArrayList<ArrayList<Listener>> listeners;
     public WeekdayMap(){
-//        super();
-//        this.put(0,new HabitList(0));
-//        this.put(1,new HabitList(1));
-//        this.put(2,new HabitList(2));
-//        this.put(3,new HabitList(3));
-//        this.put(4,new HabitList(4));
-//        this.put(5,new HabitList(5));
-//        this.put(6,new HabitList(6));
         map = new ArrayList<HabitList>(7);
         map.add( new HabitList(0));
         map.add( new HabitList(1));
@@ -46,7 +38,6 @@ public class WeekdayMap //extends HashMap<Integer,HabitList>
             if(h.getOccurance(i)==1){
                 map.get(i).add(h);
                 notifyListeners();
- //               this.get(i).add(h);
             }
         }
     }
@@ -63,7 +54,6 @@ public class WeekdayMap //extends HashMap<Integer,HabitList>
         for (int i=0; i<7; i++){
             if(h.getOccurance(i)==1){
                 map.get(i).remove(h);
- //               this.get(i).remove(h);
             }
         }
 
@@ -74,19 +64,23 @@ public class WeekdayMap //extends HashMap<Integer,HabitList>
         return map.get(i);
     }
 
-    public void addListener(Listener l,int[] occurance) {
-        for (int i = 0; i < 7; i++) {
-            if (occurance[i] == 1) {
-                listeners.get(i).add(l);
-            }
-        }
+    public void addListener(int o, Listener l) {
+//        for (int i = 0; i < 7; i++) {
+//            if (o[i] == 1) {
+//                listeners.get(i).add(l);
+//            }
+//        }
+            listeners.get(o).add(l);
+
     }
 
-    public void removeListener(Listener l,int[] o){
-        for (int i = 0; i < 7; i++) {
-            if (o[i] == 1) {
-                listeners.get(i).remove(l);
-            }
-        }
+    public void removeListener(int o,Listener l){
+//        for (int i = 0; i < 7; i++) {
+//            if (o[i] == 1) {
+//                listeners.get(i).remove(l);
+//            }
+//        }
+                listeners.get(o).remove(l);
+
     }
 }//end of class

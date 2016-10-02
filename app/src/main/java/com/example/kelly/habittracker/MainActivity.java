@@ -23,7 +23,6 @@ public class MainActivity extends Activity {
 
     private static final String FILENAME = "file.sav";
     private ArrayAdapter<Habit> DailyHabitListAdapter;
-    private ArrayList<Habit> hList = new ArrayList<Habit>();
     int currWeekday;
 
     @Override
@@ -31,7 +30,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        currWeekday = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
+        currWeekday = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1 ;
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM d, yyyy");
         String displayDate = dateFormat.format(new Date());
@@ -45,6 +44,16 @@ public class MainActivity extends Activity {
         final ArrayList<Habit> list = new ArrayList<Habit>(habits);
         DailyHabitListAdapter = new ArrayAdapter<Habit>(this, android.R.layout.simple_list_item_1,list);
         listview.setAdapter(DailyHabitListAdapter);
+
+       ListController.getDailyHabits().addListener(currWeekday,new Listener() {
+            @Override
+            public void update() {
+                list.clear();
+                Collection<Habit> habits = ListController.getDailyHabits().getaList(currWeekday);
+                list.addAll(habits);
+                DailyHabitListAdapter.notifyDataSetChanged();
+            }
+        });
 
 
 
@@ -64,11 +73,22 @@ public class MainActivity extends Activity {
 //    public void onResume(){
 //        super.onResume();
 //
-//        ListView listview = (ListView) findViewById(R.id.dailyListView);
-//        Collection<Habit> habits = ListController.getDailyHabits().getaList(currWeekday);
-//        final ArrayList<Habit> list = new ArrayList<Habit>(habits);
-//        DailyHabitListAdapter = new ArrayAdapter<Habit>(this, android.R.layout.simple_list_item_1,list);
-//        listview.setAdapter(DailyHabitListAdapter);
+//            ListView listview = (ListView) findViewById(R.id.dailyListView);
+//            Collection<Habit> habits = ListController.getDailyHabits().getaList(currWeekday);
+//            final ArrayList<Habit> list = new ArrayList<Habit>(habits);
+//            DailyHabitListAdapter = new ArrayAdapter<Habit>(this, android.R.layout.simple_list_item_1,list);
+//            listview.setAdapter(DailyHabitListAdapter);
+//
+//            ListController.getDailyHabits().addListener(currWeekday,new Listener() {
+//                @Override
+//                public void update() {
+//                    list.clear();
+//                    Collection<Habit> habits = ListController.getDailyHabits().getaList(currWeekday);
+//                    list.addAll(habits);
+//                    DailyHabitListAdapter.notifyDataSetChanged();
+//                }
+//            });
+//
 //    }
 
     public void addAHabitBpress(View v){

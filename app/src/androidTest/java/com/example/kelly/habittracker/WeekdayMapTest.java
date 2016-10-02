@@ -40,7 +40,7 @@ public class WeekdayMapTest extends TestCase {
         };
 
         int[] o1 = {1,0,0,0,0,0,0};
-        map.addListener(l,o1);
+        map.addListener(0,l);
         Habit h1 = new Habit(new Date(1),"h1",o1);
         map.addHabit(h1);
         assertTrue(this.updated);
@@ -55,9 +55,9 @@ public class WeekdayMapTest extends TestCase {
             }
         };
 
-        int[] o1 = {1,0,0,0,0,0,0};
-        map.addListener(l,o1);
-        map.removeListener(l,o1);
+        int[] o1 = {0,1,0,0,0,0,0};
+        map.addListener(1,l);
+        map.removeListener(1,l);
         Habit h1 = new Habit(new Date(1),"h1",o1);
         map.addHabit(h1);
         assertFalse(this.updated);
