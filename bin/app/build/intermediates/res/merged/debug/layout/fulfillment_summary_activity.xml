@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:id="@+id/staticFullfmentTextView">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="HabitInfo"
+        android:id="@+id/FulfillmentDisplaytextView"
+        android:layout_marginTop="66dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="This habit has been completed"
+        android:id="@+id/staticFulfillmentTextView"
+        android:layout_marginTop="29dp"
+        android:layout_below="@+id/FulfillmentDisplaytextView"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="0"
+        android:id="@+id/fulfillmentCountTextView"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/staticFulfillmentTextView"
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="times."
+        android:id="@+id/staticFulfillmentTextView2"
+        android:layout_below="@+id/fulfillmentCountTextView"
+        android:layout_alignParentLeft="true" />
+</RelativeLayout>
