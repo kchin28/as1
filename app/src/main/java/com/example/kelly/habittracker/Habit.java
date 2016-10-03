@@ -1,5 +1,6 @@
 package com.example.kelly.habittracker;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -18,7 +19,6 @@ public class Habit {
         this.Name = HabitName;
         this.CreationDate = dateAdded;
         this.occurance=howOften;
-
         this.record = new CompletionRecord();
     }
 
@@ -26,19 +26,28 @@ public class Habit {
     public String getName(){
         return Name;
     }
-    public String toString(){
-        return this.getName();
-    }
+
+//    public String getAllInfo(){
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM d");
+//        String displayDate = dateFormat.format(getDate());
+//
+//        String output = this.getName() + " | Started on: " + displayDate;
+//        return output;
+//    }
 
     public Date getDate(){ return CreationDate; }
 
     public int getOccurance(int i){ return occurance[i];}
 
-    public void addCompletion(Completion c){
-        record.add(c);
-    }
+    public void addCompletion(Completion c){record.add(c);}
+
+    public void deleteCompletion(Completion c){ record.remove(c);}
 
     public CompletionRecord getCompletionRecord(){ return record;}
+
+    public String toString(){
+        return this.getName();
+    }
 
 
 }//end of habit class

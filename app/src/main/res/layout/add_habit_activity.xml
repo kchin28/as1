@@ -35,10 +35,9 @@
         android:layout_height="wrap_content"
         android:text="Sunday"
         android:id="@+id/sun_checkBox"
-        android:layout_marginTop="73dp"
         android:checked="false"
-        android:layout_below="@+id/newHabitName"
-        android:layout_toEndOf="@+id/addHabitText" />
+        android:layout_below="@+id/occuranceText"
+        android:layout_toEndOf="@+id/occuranceText" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -53,7 +52,7 @@
         android:layout_height="wrap_content"
         android:text="Tuesday"
         android:id="@+id/tue_checkBox"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/mon_checkBox"
         android:layout_alignStart="@+id/mon_checkBox" />
 
     <CheckBox
@@ -93,10 +92,10 @@
         android:layout_height="wrap_content"
         android:text="Save"
         android:id="@+id/saveHabitButton"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="49dp"
         android:singleLine="false"
-        android:onClick="saveHabitBpress" />
+        android:onClick="saveHabitBpress"
+        android:layout_below="@+id/sat_checkBox"
+        android:layout_alignEnd="@+id/thu_checkBox"
+        android:layout_marginTop="35dp" />
 
 </RelativeLayout>
