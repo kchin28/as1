@@ -45,7 +45,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ListManager.initManager(this.getApplicationContext());
+        //ListManager.initManager(this.getApplicationContext());
 
         currWeekday = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1 ;
 
@@ -128,7 +128,7 @@ public class MainActivity extends Activity {
                                     startActivity(intent);
                                 }
                                 if(which==3){//view fulfillment summary
-                                    Toast.makeText(MainActivity.this, "I want to view fulfillments for " + list.get(currHabit_pos).toString(), Toast.LENGTH_SHORT).show();
+                                   // Toast.makeText(MainActivity.this, "I want to view fulfillments for " + list.get(currHabit_pos).toString(), Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(MainActivity.this,ViewFulfillmentSummary.class);
                                     intent.putExtra("currHabit Position",currHabit_pos);
                                     startActivity(intent);

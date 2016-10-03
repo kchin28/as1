@@ -18,7 +18,7 @@ public class ViewFulfillmentSummary extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fulfillment_summary_activity);
-        ListManager.initManager(this.getApplicationContext());
+       // ListManager.initManager(this.getApplicationContext());
 
         currWeekday = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1 ;
 

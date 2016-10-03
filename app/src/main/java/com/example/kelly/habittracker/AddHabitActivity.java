@@ -18,7 +18,7 @@ public class AddHabitActivity extends MainActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_habit_activity);
-        ListManager.initManager(this.getApplicationContext());
+        //ListManager.initManager(this.getApplicationContext());
     }
 
     public void saveHabitBpress(View v){

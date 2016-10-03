@@ -24,7 +24,7 @@ public class ViewHabitCompletionsActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_completions_activity);
-        ListManager.initManager(this.getApplicationContext());
+       // ListManager.initManager(this.getApplicationContext());
 
         currWeekday = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1 ;
 

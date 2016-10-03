@@ -14,20 +14,20 @@ public class ListController {
 
     public static WeekdayMap getDailyHabits() throws IOException, ClassNotFoundException {//this static instance can work on the class itself ( no obj necessary)
         if (map==null){
-            map = ListManager.getManager().loadFromFile();
-            map.addListener(new Listener() {
-                @Override
-                public void update() {
-                    try {
-                        saveMap();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (ClassNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-            //map = new WeekdayMap();
+//            map = ListManager.getManager().loadFromFile();
+//            map.addListener(new Listener() {
+//                @Override
+//                public void update() {
+//                    try {
+//                        saveMap();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    } catch (ClassNotFoundException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            });
+            map = new WeekdayMap();
         }
         return map;
     }
