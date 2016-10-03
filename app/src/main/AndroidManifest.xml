@@ -17,10 +17,8 @@
         </activity>
         <activity android:name=".Main2Activity" />
         <activity android:name=".AddHabitActivity" />
-        <activity
-            android:name=".HabitActionsActivity"
-            android:label="@string/title_activity_habit_actions"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".ViewHabitCompletionsActivity" />
+        <activity android:name=".ViewFulfillmentSummary"></activity>
     </application>
 
 </manifest>

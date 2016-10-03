@@ -4,6 +4,8 @@
     <string name="todaytext">TodayText</string>
     <string name="title_activity_habit_actions">HabitActionsActivity</string>
     <string name="habit_actions">Choose an action:</string>
+    <string name="cancel">Cancel</string>
+    <string name="del">Delete</string>
     <string-array name="habit_actions_array">
         <item>Complete Habit</item>
         <item>Delete</item>

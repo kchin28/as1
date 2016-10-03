@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 public class MainActivity extends Activity {
 
@@ -35,9 +36,8 @@ public class MainActivity extends Activity {
 
         currWeekday = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1 ;
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM d, yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM.d,yyyy");
         String displayDate = dateFormat.format(new Date());
-
         TextView TodaysDate = (TextView) findViewById(R.id.todayTextView);
         TodaysDate.setText("Today is " + displayDate);
 
@@ -48,8 +48,7 @@ public class MainActivity extends Activity {
         DailyHabitListAdapter = new ArrayAdapter<Habit>(this, android.R.layout.simple_list_item_1,list);
         listview.setAdapter(DailyHabitListAdapter);
 
-        ListController.getDailyHabits().addListener(currWeekday,new Listener() {
-            @Override
+        ListController.getDailyHabits().addListener(new Listener() {// observing habits add/delete
             public void update() {
                 list.clear();
                 Collection<Habit> habits = ListController.getDailyHabits().getaList(currWeekday);
@@ -64,33 +63,36 @@ public class MainActivity extends Activity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle(R.string.habit_actions)
                         .setItems(R.array.habit_actions_array, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) { // [complete,delete,view completions,view fulfillments]
-                                if(which==0){
-                                    Toast.makeText(MainActivity.this, "I want to Complete " + list.get(currHabit_pos).toString(), Toast.LENGTH_SHORT).show();
+                            public void onClick(DialogInterface dialog, int which) {
+                                if(which==0){ //complete habit
+                                    Toast.makeText(MainActivity.this, "Good job completing " + list.get(currHabit_pos).toString() + "!", Toast.LENGTH_SHORT).show();
+                                    Completion newCompletion = new Completion(); //curr completion date
+                                    ListController.getDailyHabits().addHabitCompletion(currWeekday,currHabit_pos,newCompletion);
+
                                 }
-                                if(which==1){
-                                    Toast.makeText(MainActivity.this, "I want to delete " + list.get(currHabit_pos).toString(), Toast.LENGTH_SHORT).show();
+                                if(which==1){ //delete habit
+                                    Toast.makeText(MainActivity.this, "Deleted " + list.get(currHabit_pos).toString(), Toast.LENGTH_SHORT).show();
+                                    Habit currHabit = list.get(currHabit_pos);
+                                    ListController.getDailyHabits().deleteHabit(currHabit);
                                 }
-                                if(which==2){
-                                    Toast.makeText(MainActivity.this, "I want to view completions for " + list.get(currHabit_pos).toString(), Toast.LENGTH_SHORT).show();
+                                if(which==2){ //view completions
+                                  //  Toast.makeText(MainActivity.this, "I want to view completions for " + list.get(currHabit_pos).toString(), Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(MainActivity.this,ViewHabitCompletionsActivity.class);
+                                    intent.putExtra("currHabit Position",currHabit_pos);
+                                    startActivity(intent);
                                 }
-                                if(which==3){
+                                if(which==3){//view fulfillment summary
                                     Toast.makeText(MainActivity.this, "I want to view fulfillments for " + list.get(currHabit_pos).toString(), Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(MainActivity.this,ViewFulfillmentSummary.class);
+                                    intent.putExtra("currHabit Position",currHabit_pos);
+                                    startActivity(intent);
                                 }
-
-
                             }
                         });
-
-//                Intent intent = new Intent(MainActivity.this,HabitActionsActivity.class);
-//                startActivity(intent);
-               // Toast.makeText(MainActivity.this, "Perform action on " + list.get(position).toString(), Toast.LENGTH_SHORT).show();
                 builder.show();
                 return false;
             }
         });
-
-
 
 
     }//end of onCreate

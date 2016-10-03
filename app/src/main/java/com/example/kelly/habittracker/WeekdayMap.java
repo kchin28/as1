@@ -10,7 +10,9 @@ import java.util.HashMap;
 public class WeekdayMap //extends HashMap<Integer,HabitList>
 {
     ArrayList<HabitList> map ;
-    ArrayList<ArrayList<Listener>> listeners;
+    ArrayList<Listener> listeners;
+    ArrayList<Listener> completionListeners;
+
     public WeekdayMap(){
         map = new ArrayList<HabitList>(7);
         map.add( new HabitList(0));
@@ -21,15 +23,8 @@ public class WeekdayMap //extends HashMap<Integer,HabitList>
         map.add( new HabitList(5));
         map.add( new HabitList(6));
 
-        listeners = new ArrayList<ArrayList<Listener>>(7);
-        listeners.add(new ArrayList<Listener>());
-        listeners.add(new ArrayList<Listener>());
-        listeners.add(new ArrayList<Listener>());
-        listeners.add(new ArrayList<Listener>());
-        listeners.add(new ArrayList<Listener>());
-        listeners.add(new ArrayList<Listener>());
-        listeners.add(new ArrayList<Listener>());
-
+        listeners = new ArrayList<Listener>();
+        completionListeners = new ArrayList<Listener>();
     }
 
     public void addHabit(Habit h){
@@ -42,45 +37,46 @@ public class WeekdayMap //extends HashMap<Integer,HabitList>
         }
     }
 
-    private void notifyListeners() {
-        for(int i=0;i<7;i++){
-            for(Listener l:listeners.get(i)){
-                l.update();
-            }
-        }
-    }
-
     public void deleteHabit(Habit h){
         for (int i=0; i<7; i++){
             if(h.getOccurance(i)==1){
                 map.get(i).remove(h);
+                notifyListeners();
             }
         }
-
-
     }
 
     public HabitList getaList(int i){
         return map.get(i);
     }
 
-    public void addListener(int o, Listener l) {
-//        for (int i = 0; i < 7; i++) {
-//            if (o[i] == 1) {
-//                listeners.get(i).add(l);
-//            }
-//        }
-            listeners.get(o).add(l);
+    private void notifyListeners() {
+        for(Listener l:listeners){
+            l.update();
+        }
+    }
+    public void addListener( Listener l) {   listeners.add(l);}
 
+    public void removeListener(Listener l){  listeners.remove(l);}
+
+    private void notifyCompletionListeners() {
+        for(Listener cl:completionListeners){
+            cl.update();
+        }
     }
 
-    public void removeListener(int o,Listener l){
-//        for (int i = 0; i < 7; i++) {
-//            if (o[i] == 1) {
-//                listeners.get(i).remove(l);
-//            }
-//        }
-                listeners.get(o).remove(l);
-
+    public void addHabitCompletion(int currWeekday,int currHabit, Completion c){
+        map.get(currWeekday).get(currHabit).addCompletion(c);
+        notifyCompletionListeners();
     }
+
+    public void deleteHabitCompletion(int currWeekday,int currHabit, Completion c){
+        map.get(currWeekday).get(currHabit).deleteCompletion(c);
+        notifyCompletionListeners();
+    }
+
+    public void addCompletionListener( Listener l) {    completionListeners.add(l);}
+
+    public void removeCompletionListener(Listener l){   completionListeners.remove(l);}
+
 }//end of class

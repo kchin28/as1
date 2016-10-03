@@ -25,6 +25,14 @@ public class ListController {
         getDailyHabits().deleteHabit(h);
     }
 
+    public void completeHabit(int currWeekday,int currHabit, Completion c){
+        getDailyHabits().addHabitCompletion(currWeekday,currHabit,c);
+    }
+
+    public void deleteCompletion(int currWeekday,int currHabit,Completion c){
+        getDailyHabits().deleteHabitCompletion(currWeekday,currHabit,c);
+    }
+
 
 
 }//end

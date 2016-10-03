@@ -9,8 +9,8 @@
         android:layout_width="fill_parent"
         android:layout_height="430dp"
         android:id="@+id/dailyListView"
-        android:layout_above="@+id/AddHabitButton"
-        android:layout_alignParentStart="true" />
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -35,7 +35,8 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="TodayText"
         android:id="@+id/todayTextView"
-        android:layout_above="@+id/dailyListView"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="31dp" />
 
 </RelativeLayout>
