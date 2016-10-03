@@ -7,7 +7,7 @@ import java.util.HashMap;
 /**
  * Created by Kelly on 2016-09-29.
  */
-public class WeekdayMap //extends HashMap<Integer,HabitList>
+public class WeekdayMap
 {
     ArrayList<HabitList> map ;
     ArrayList<Listener> listeners;

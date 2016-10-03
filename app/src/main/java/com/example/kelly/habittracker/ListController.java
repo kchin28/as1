@@ -1,5 +1,7 @@
 package com.example.kelly.habittracker;
 
+import java.io.IOException;
+
 /**
  * Created by Kelly on 2016-09-30.
  */
@@ -10,29 +12,45 @@ public class ListController {
     //will be the same throughout all these interactions.
     private static WeekdayMap map = null;
 
-    public static WeekdayMap getDailyHabits() {//this static instance can work on the class itself ( no obj necessary)
+    public static WeekdayMap getDailyHabits() throws IOException, ClassNotFoundException {//this static instance can work on the class itself ( no obj necessary)
         if (map==null){
-            map = new WeekdayMap();
+            map = ListManager.getManager().loadFromFile();
+            map.addListener(new Listener() {
+                @Override
+                public void update() {
+                    try {
+                        saveMap();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            //map = new WeekdayMap();
         }
         return map;
     }
 
-    public void addHabit(Habit h){
+    public void addHabit(Habit h) throws IOException, ClassNotFoundException {
         getDailyHabits().addHabit(h);
     }
 
-    public void deleteHabit(Habit h){
+    public void deleteHabit(Habit h) throws IOException, ClassNotFoundException {
         getDailyHabits().deleteHabit(h);
     }
 
-    public void completeHabit(int currWeekday,int currHabit, Completion c){
+    public void completeHabit(int currWeekday,int currHabit, Completion c) throws IOException, ClassNotFoundException {
         getDailyHabits().addHabitCompletion(currWeekday,currHabit,c);
     }
 
-    public void deleteCompletion(int currWeekday,int currHabit,Completion c){
+    public void deleteCompletion(int currWeekday,int currHabit,Completion c) throws IOException, ClassNotFoundException {
         getDailyHabits().deleteHabitCompletion(currWeekday,currHabit,c);
     }
 
+    static void saveMap() throws IOException, ClassNotFoundException {
+        ListManager.getManager().saveInFile(getDailyHabits());
+    }
 
 
 }//end

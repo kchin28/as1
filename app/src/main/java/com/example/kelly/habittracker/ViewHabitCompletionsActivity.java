@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -23,7 +24,7 @@ public class ViewHabitCompletionsActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_completions_activity);
-
+        ListManager.initManager(this.getApplicationContext());
 
         currWeekday = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1 ;
 
@@ -31,23 +32,49 @@ public class ViewHabitCompletionsActivity extends AppCompatActivity {
         final int currHabitpos = extras.getInt("currHabit Position");
 
         TextView HabitCompletionInfo = (TextView) findViewById(R.id.HabitCompletionsTextView);
-        HabitCompletionInfo.setText(" Viewing Completions for " + ListController.getDailyHabits().getaList(currWeekday).get(currHabitpos).getName());
+        try {
+            HabitCompletionInfo.setText(" Viewing Completions for " + ListController.getDailyHabits().getaList(currWeekday).get(currHabitpos).getName());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         ListView listview = (ListView) findViewById(R.id.PastCompletionsListView);
-        Collection<Completion> pastCompletions = ListController.getDailyHabits().getaList(currWeekday).get(currHabitpos).getCompletionRecord();
+        Collection<Completion> pastCompletions = null;
+        try {
+            pastCompletions = ListController.getDailyHabits().getaList(currWeekday).get(currHabitpos).getCompletionRecord();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         final ArrayList<Completion> list = new ArrayList<Completion>(pastCompletions);
         PastCompletionsListAdapter = new ArrayAdapter<Completion>(this, android.R.layout.simple_list_item_1,list);
         listview.setAdapter(PastCompletionsListAdapter);
 
-        ListController.getDailyHabits().addCompletionListener(new Listener() {
-            @Override
-            public void update() {
-                list.clear();
-                Collection<Completion> pastCompletions = ListController.getDailyHabits().getaList(currWeekday).get(currHabitpos).getCompletionRecord();
-                list.addAll(pastCompletions);
-                PastCompletionsListAdapter.notifyDataSetChanged();
-            }
-        });
+        try {
+            ListController.getDailyHabits().addCompletionListener(new Listener() {
+                @Override
+                public void update() {
+                    list.clear();
+                    Collection<Completion> pastCompletions = null;
+                    try {
+                        pastCompletions = ListController.getDailyHabits().getaList(currWeekday).get(currHabitpos).getCompletionRecord();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    list.addAll(pastCompletions);
+                    PastCompletionsListAdapter.notifyDataSetChanged();
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id){
@@ -57,7 +84,14 @@ public class ViewHabitCompletionsActivity extends AppCompatActivity {
                         .setPositiveButton(R.string.del, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 Completion currCompletion = list.get(finalpos);
-                                ListController.getDailyHabits().getaList(currWeekday).get(currHabitpos).deleteCompletion(currCompletion);
+                                //ListController.getDailyHabits().getaList(currWeekday).get(currHabitpos).getCompletionRecord().remove(currCompletion);
+                                try {
+                                    ListController.getDailyHabits().getaList(currWeekday).get(currHabitpos).deleteCompletion(currCompletion);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                } catch (ClassNotFoundException e) {
+                                    e.printStackTrace();
+                                }
                             }
                         })
                         .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

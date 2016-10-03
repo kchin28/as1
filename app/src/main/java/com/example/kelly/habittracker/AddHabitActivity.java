@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.Date;
 
 public class AddHabitActivity extends MainActivity {
@@ -17,6 +18,7 @@ public class AddHabitActivity extends MainActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_habit_activity);
+        ListManager.initManager(this.getApplicationContext());
     }
 
     public void saveHabitBpress(View v){
@@ -48,7 +50,13 @@ public class AddHabitActivity extends MainActivity {
 
         Habit newHabit = new Habit(new Date(),HabitNameTextView.getText().toString(),OccuranceNewHabit);
         ListController lc = new ListController();
-        lc.addHabit(newHabit);
+        try {
+            lc.addHabit(newHabit);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 //       // Log.d("hi",lc.getDailyHabits().get(0).get(0).toString());
     }
 }//end

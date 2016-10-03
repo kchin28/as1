@@ -16,6 +16,18 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -24,15 +36,16 @@ import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends Activity {
-
-    private static final String FILENAME = "file.sav";
-    private ArrayAdapter<Habit> DailyHabitListAdapter;
+    private static final String FILENAME= "file.sav";
+    ArrayList<Habit> list = new ArrayList<Habit>();
+    private ArrayAdapter<Habit>  DailyHabitListAdapter;
     int currWeekday;
 
-    @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ListManager.initManager(this.getApplicationContext());
 
         currWeekday = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1 ;
 
@@ -43,19 +56,40 @@ public class MainActivity extends Activity {
 
 
         ListView listview = (ListView) findViewById(R.id.dailyListView);
-        Collection<Habit> habits = ListController.getDailyHabits().getaList(currWeekday);
-        final ArrayList<Habit> list = new ArrayList<Habit>(habits);
+        try {
+            Collection<Habit> habits = ListController.getDailyHabits().getaList(currWeekday);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        // final ArrayList<Habit> list = new ArrayList<Habit>();
+
         DailyHabitListAdapter = new ArrayAdapter<Habit>(this, android.R.layout.simple_list_item_1,list);
         listview.setAdapter(DailyHabitListAdapter);
 
-        ListController.getDailyHabits().addListener(new Listener() {// observing habits add/delete
-            public void update() {
-                list.clear();
-                Collection<Habit> habits = ListController.getDailyHabits().getaList(currWeekday);
-                list.addAll(habits);
-                DailyHabitListAdapter.notifyDataSetChanged();
-            }
-        });
+        try {
+            ListController.getDailyHabits().addListener(new Listener() {// observing habits add/delete
+                public void update() {
+                    list.clear();
+                    Collection<Habit> habits = null;
+                    try {
+                        habits = ListController.getDailyHabits().getaList(currWeekday);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    list.addAll(habits);
+                    DailyHabitListAdapter.notifyDataSetChanged();
+
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
@@ -67,13 +101,25 @@ public class MainActivity extends Activity {
                                 if(which==0){ //complete habit
                                     Toast.makeText(MainActivity.this, "Good job completing " + list.get(currHabit_pos).toString() + "!", Toast.LENGTH_SHORT).show();
                                     Completion newCompletion = new Completion(); //curr completion date
-                                    ListController.getDailyHabits().addHabitCompletion(currWeekday,currHabit_pos,newCompletion);
+                                    try {
+                                        ListController.getDailyHabits().addHabitCompletion(currWeekday,currHabit_pos,newCompletion);
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    } catch (ClassNotFoundException e) {
+                                        e.printStackTrace();
+                                    }
 
                                 }
                                 if(which==1){ //delete habit
                                     Toast.makeText(MainActivity.this, "Deleted " + list.get(currHabit_pos).toString(), Toast.LENGTH_SHORT).show();
                                     Habit currHabit = list.get(currHabit_pos);
-                                    ListController.getDailyHabits().deleteHabit(currHabit);
+                                    try {
+                                        ListController.getDailyHabits().deleteHabit(currHabit);
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    } catch (ClassNotFoundException e) {
+                                        e.printStackTrace();
+                                    }
                                 }
                                 if(which==2){ //view completions
                                   //  Toast.makeText(MainActivity.this, "I want to view completions for " + list.get(currHabit_pos).toString(), Toast.LENGTH_SHORT).show();
@@ -104,5 +150,8 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(MainActivity.this,AddHabitActivity.class);
         startActivity(intent);
     }
+
+
+
 
 }//end of MainActivity
