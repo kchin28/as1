@@ -2,11 +2,11 @@ package com.example.kelly.habittracker;
 
 
 import java.util.ArrayList;
-
-
-/**
- * Created by Kelly on 2016-09-25.
- */
+/*
+* Copyright (C) 2016  Kelly Chin
+*
+* Contains Habits
+* */
 public class HabitList extends ArrayList<Habit>{
     private int weekday;
 

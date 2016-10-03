@@ -9,6 +9,7 @@ import java.util.HashMap;
  */
 public class WeekdayMap
 {
+    //functionality of ArrayList is used to implement these three attributes
     ArrayList<HabitList> map ;
     ArrayList<Listener> listeners;
     ArrayList<Listener> completionListeners;
@@ -28,7 +29,8 @@ public class WeekdayMap
     }
 
     public void addHabit(Habit h){
-
+        //occurance of habit must be cycled through because a date needs to show up on multiple days if it
+        //needs to occur on different weekdays
         for (int i=0; i<7; i++){
             if(h.getOccurance(i)==1){
                 map.get(i).add(h);

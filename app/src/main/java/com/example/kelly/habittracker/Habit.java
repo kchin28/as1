@@ -28,14 +28,6 @@ public class Habit {
         return Name;
     }
 
-//    public String getAllInfo(){
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM d");
-//        String displayDate = dateFormat.format(getDate());
-//
-//        String output = this.getName() + " | Started on: " + displayDate;
-//        return output;
-//    }
-
     public Date getDate(){ return CreationDate; }
 
     public int getOccurance(int i){ return occurance[i];}

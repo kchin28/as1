@@ -19,9 +19,12 @@ import java.lang.reflect.Type;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-/**
- * Created by Kelly on 2016-10-02.
- */
+/*
+* Copyright (C) 2014 Abram Hindle abram.hindle@softwareprocess.ca
+* Modified by : Kelly Chin, 2016
+*
+* Persistent data using Gson/Json doesn't work and is commented out, this Class is never used.
+* */
 public class ListManager {
     private static final String FILENAME= "file.sav";
     WeekdayMap hList;

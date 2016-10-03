@@ -2,9 +2,10 @@ package com.example.kelly.habittracker;
 
 import java.util.ArrayList;
 
-/**
- * Created by Kelly on 2016-09-26.
- */
+/*
+* Copyright (C) 2016, Kelly Chin
+* Simply an ArrayList of Completions
+* */
 public class CompletionRecord extends ArrayList<Completion> {
 
     public CompletionRecord(){
