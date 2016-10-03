@@ -4,8 +4,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-/**
- * Created by Kelly on 2016-09-21.
+/*Copyright (C) 2016, Kelly Chin
+ *
+ * Defines Habit and its behavior. Provides access methods to private variables
  */
 public class Habit {
     private String Name;

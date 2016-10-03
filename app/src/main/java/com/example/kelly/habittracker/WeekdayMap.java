@@ -4,8 +4,8 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * Created by Kelly on 2016-09-29.
+/**Copyright (C) 2016, Kelly Chin
+ * Sorts HabitLists by weekday to provide a way for habits to be organised.
  */
 public class WeekdayMap
 {

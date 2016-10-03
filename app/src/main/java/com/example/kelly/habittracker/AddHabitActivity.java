@@ -1,5 +1,8 @@
 package com.example.kelly.habittracker;
-
+/*
+* Copyright (C) 2016, Kelly Chin
+* Android UI to Add Habits
+* */
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;

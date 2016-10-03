@@ -2,8 +2,8 @@ package com.example.kelly.habittracker;
 
 import java.io.IOException;
 
-/**
- * Created by Kelly on 2016-09-30.
+/**Copyright (C) 2014, Abram Hindle abram.hindle@softwareprocess.ca
+ * Modified by Kelly Chin, 2016
  */
 public class ListController {
     //static instance is restricted to the class level so that
