@@ -1,5 +1,10 @@
 package com.example.kelly.habittracker;
-
+/*
+* * Copyright (C) 2014 Abram Hindle abram.hindle@softwareprocess.ca, Copyright (C) 2015 Joshua2ua
+* Modified by : Kelly Chin, 2016
+*
+* Attempts to encapusalte persistent data uses Gson/Json for use by ListController
+* */
 import android.content.Context;
 
 import java.io.BufferedReader;
@@ -11,12 +16,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
-//import com.google.gson.Gson;
-//import com.google.gson.reflect.TypeToken;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
-/**
- * Created by Kelly on 2016-10-02.
- */
+/*
+* Copyright (C) 2014 Abram Hindle abram.hindle@softwareprocess.ca
+* Modified by : Kelly Chin, 2016
+*
+* Persistent data using Gson/Json doesn't work and is commented out, this Class is never used.
+* */
 public class ListManager {
     private static final String FILENAME= "file.sav";
     WeekdayMap hList;

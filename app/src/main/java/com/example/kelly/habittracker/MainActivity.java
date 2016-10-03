@@ -1,5 +1,13 @@
 package com.example.kelly.habittracker;
-
+/*
+* Copyright (C) 2014 Abram Hindle abram.hindle@softwareprocess.ca
+* Modified by : Kelly Chin, 2016
+*
+* Main activity is the "home screen" of the app, it provides the user with a way to look
+* at their habits for the day and select them to perform different actions on them.
+*
+* View all habits button is not functional/implemented.
+* */
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -47,6 +55,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         //ListManager.initManager(this.getApplicationContext());
 
+        //get current weekday to index WeekdayMap to get proper HabitList for today
         currWeekday = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1 ;
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM.d,yyyy");
@@ -63,11 +72,12 @@ public class MainActivity extends Activity {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        // final ArrayList<Habit> list = new ArrayList<Habit>();
 
         DailyHabitListAdapter = new ArrayAdapter<Habit>(this, android.R.layout.simple_list_item_1,list);
         listview.setAdapter(DailyHabitListAdapter);
 
+
+        //fetch data from Listcontroller to display updated habitsList
         try {
             ListController.getDailyHabits().addListener(new Listener() {// observing habits add/delete
                 public void update() {
@@ -91,6 +101,7 @@ public class MainActivity extends Activity {
             e.printStackTrace();
         }
 
+        //allow user to select a single habit and choose an action from a dialog window
         listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
                 final int currHabit_pos = position;
@@ -122,13 +133,12 @@ public class MainActivity extends Activity {
                                     }
                                 }
                                 if(which==2){ //view completions
-                                  //  Toast.makeText(MainActivity.this, "I want to view completions for " + list.get(currHabit_pos).toString(), Toast.LENGTH_SHORT).show();
+                                    //pass position so we are able to access current habit in other activities
                                     Intent intent = new Intent(MainActivity.this,ViewHabitCompletionsActivity.class);
                                     intent.putExtra("currHabit Position",currHabit_pos);
                                     startActivity(intent);
                                 }
                                 if(which==3){//view fulfillment summary
-                                   // Toast.makeText(MainActivity.this, "I want to view fulfillments for " + list.get(currHabit_pos).toString(), Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(MainActivity.this,ViewFulfillmentSummary.class);
                                     intent.putExtra("currHabit Position",currHabit_pos);
                                     startActivity(intent);
@@ -146,7 +156,6 @@ public class MainActivity extends Activity {
 
 
     public void addAHabitBpress(View v){
-       // Toast.makeText(this,"Add Habit Button Pressed!",Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(MainActivity.this,AddHabitActivity.class);
         startActivity(intent);
     }

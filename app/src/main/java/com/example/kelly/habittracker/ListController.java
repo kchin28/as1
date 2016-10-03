@@ -2,8 +2,15 @@ package com.example.kelly.habittracker;
 
 import java.io.IOException;
 
-/**
- * Created by Kelly on 2016-09-30.
+/**Copyright (C) 2014, Abram Hindle abram.hindle@softwareprocess.ca
+ * Modified by Kelly Chin, 2016
+ *
+ * Listcontroller acts as an in between from the Android UI and the java backend.
+ * Static instances of this class include the Weekday Map class and the all the methods
+ * are to access the values from this class.
+ *
+ * Persistant data through the ListManager is not implemented and has been commented out.
+ * Was supposed to communicate with ListManager here.
  */
 public class ListController {
     //static instance is restricted to the class level so that

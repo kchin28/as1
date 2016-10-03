@@ -1,5 +1,8 @@
 package com.example.kelly.habittracker;
-
+/*
+* Copyright (C) 2016, Kelly Chin
+* Android UI to Add Habits
+* */
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -48,6 +51,7 @@ public class AddHabitActivity extends MainActivity {
         CheckBox sat = (CheckBox) findViewById(R.id.sat_checkBox);
         if (sat.isChecked()){OccuranceNewHabit[6]=1;}
 
+        //create a new habit from android user interface and add it to the list via listcontroller
         Habit newHabit = new Habit(new Date(),HabitNameTextView.getText().toString(),OccuranceNewHabit);
         ListController lc = new ListController();
         try {
@@ -57,7 +61,6 @@ public class AddHabitActivity extends MainActivity {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-//       // Log.d("hi",lc.getDailyHabits().get(0).get(0).toString());
     }
 }//end
 

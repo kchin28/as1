@@ -3,9 +3,10 @@ package com.example.kelly.habittracker;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Created by Kelly on 2016-09-26.
- */
+/*
+* Copyright (C) 2016, Kelly Chin
+* Extends from Date, but overrides toString method with a specific date format
+* */
 public class Completion extends Date {
 
     public Completion(){

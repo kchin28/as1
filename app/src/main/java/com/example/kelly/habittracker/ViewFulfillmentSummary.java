@@ -1,5 +1,9 @@
 package com.example.kelly.habittracker;
-
+/*
+* Copyright (C) 2016, Kelly Chin
+*
+*Implements an activity that allows user to view the count of completions for a specific habit
+* */
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;

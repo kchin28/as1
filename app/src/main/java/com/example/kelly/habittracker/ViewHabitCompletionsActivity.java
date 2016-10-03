@@ -1,5 +1,11 @@
 package com.example.kelly.habittracker;
 
+/*
+* Copyright (C) 2016, Kelly Chin
+* Android UI to view completions for each habit.
+* Completion List does not update immediately, faulty listener or adapter
+* */
+
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
