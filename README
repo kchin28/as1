@@ -2,6 +2,8 @@
 CMPUT 301 Assignment 1: Habit Tracker
 by Kelly Chin (kgchin)
 
+The current version does not implement persistent data, the attempt has been left inside the source code but is commented out.
+
 Video demo: 
 
 Licenses:
